@@ -1,0 +1,29 @@
+{
+  "name": "trivia-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app",
+    "dev": "nodemon src/app",
+    "encrypt": "node env/src/encrypt",
+    "decrypt": "node env/src/decrypt"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cron": "^1.8.2",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "firebase-admin": "^9.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "inquirer": "^7.3.3",
+    "nodemon": "^2.0.7"
+  }
+}
