@@ -1,8 +1,10 @@
 require('dotenv').config({ path: `${__dirname}/../env/.env` });
 const { Client } = require('discord.js');
 const { COMMAND_CODE, COMMANDS, BOT_CHANNEL } = require('./constants/command');
+const { intilializeFireStore } = require('./database/firestore');
 
 const client = new Client();
+intilializeFireStore();
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
