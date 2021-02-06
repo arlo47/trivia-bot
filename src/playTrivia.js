@@ -1,4 +1,4 @@
-const Trivia = require('./classes/Trivia');
+const TriviaManager = require('./classes/TriviaManager');
 const { getAllUsers, upsertUserScore } = require('./utils/fireStoreUtils');
 const { getQuestion } = require('./utils/triviaUtils');
 
@@ -45,7 +45,7 @@ const initializeTrivia = (msg) => {
       const { answer } = docs[1];
       const { value } = docs[1];
       const category = docs[1].category.title;
-      trivia = new Trivia(users, question, answer, value, category);
+      trivia = new TriviaManager(users, question, answer, value, category);
       askQuestion(msg, trivia);
     })
     .catch((error) => {

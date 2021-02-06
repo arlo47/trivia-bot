@@ -1,30 +1,13 @@
-const {
-  VOWELS,
-  CONSONANTS,
-  HINT_REDUCTION_MAP,
-  DETERMINERS,
-} = require('../constants/trivia');
+const HintBuilder = require('./HintBuilder');
 
-class Trivia {
+class TriviaManager {
   constructor(users, question, answer, value, category) {
     this.users = users;
     this.question = question;
     this.answer = this.sanitizeAnswer(answer);
     this.value = value;
     this.category = category;
-  }
-
-  /**
-   * @author Greg Fitzpatrick
-   *
-   * @description sanitizes strings received from API that
-   * include '\', '"' & HTML elements
-   *
-   * @param {String} text
-   * @returns {String}
-   */
-  sanitizeAnswer(text) {
-    return text.replace(/<[^>]*>?/gm, '').replace(/["]+/g, '').replace(/[\\]+/g, '');
+    this.hintBuilder = new HintBuilder(answer);
   }
 
   getFormattedQuestion() {
@@ -43,7 +26,8 @@ class Trivia {
     this.question = question;
     this.answer = answer;
     this.value = value;
+    this.hintBuilder = new HintBuilder(answer);
   }
 }
 
-module.exports = Trivia;
+module.exports = TriviaManager;
