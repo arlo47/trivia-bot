@@ -21,4 +21,23 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     });
 });
 
-module.exports = { getAllUsers };
+const upsertUserScore = (user) => new Promise((resolve, reject) => {
+  const userColRef = getFireStoreRef().collection('users');
+
+  userColRef.doc(user.fireStoreId).get()
+    .then((doc) => {
+      const docData = doc.data() ? doc.data() : user;
+      if (doc.exists) {
+        docData.score = user.score;
+      }
+      return userColRef.doc(docData.userId).set(docData);
+    })
+    .then((result) => {
+      resolve('successfully updated user score');
+    })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
+module.exports = { getAllUsers, upsertUserScore };

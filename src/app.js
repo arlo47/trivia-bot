@@ -3,6 +3,7 @@ const { Client } = require('discord.js');
 const { COMMAND_CODE } = require('./constants/command');
 const { intilializeFireStore } = require('./database/firestore');
 const { processCommand } = require('./command');
+const { getTrivia, checkAnswer } = require('./playTrivia');
 
 const client = new Client();
 intilializeFireStore();
@@ -19,6 +20,10 @@ client.on('message', (msg) => {
 
   if (msg.content[0] === COMMAND_CODE) {
     processCommand(msg);
+  }
+
+  if (getTrivia()) {
+    checkAnswer(msg);
   }
 });
 

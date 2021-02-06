@@ -1,3 +1,4 @@
+/* eslint-disable */
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
@@ -8,9 +9,9 @@ const prompt = inquirer.createPromptModule();
 prompt({
   message: 'Enter Password: ',
   type: 'password',
-  name: 'key'
+  name: 'key',
 })
-  .then(answer => {
+  .then((answer) => {
     fs.readFile(path.join(__dirname, '../.env'), 'utf8', (err, data) => {
       if (err) {
         throw err;
@@ -19,7 +20,7 @@ prompt({
       const cipher = crypto.createCipheriv('aes-128-cbc', new Buffer.from(answer.key, 'utf8'), iv);
       const encrypted = cipher.update(data);
       const finalBuffer = Buffer.concat([encrypted, cipher.final()]);
-      const encryptedHex = iv.toString('hex') + ':' + finalBuffer.toString('hex');
+      const encryptedHex = `${iv.toString('hex')}:${finalBuffer.toString('hex')}`;
 
       fs.writeFile(path.join(__dirname, '../encrypted.env'), encryptedHex, (err, data) => {
         if (err) {
@@ -29,9 +30,6 @@ prompt({
       });
     });
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
-  })
-
-
-
+  });

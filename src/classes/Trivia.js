@@ -30,6 +30,20 @@ class Trivia {
   getFormattedQuestion() {
     return `Category: ${this.category}\n${this.question}, for $${this.value}`;
   }
+
+  isPlayingTrivia() {
+    return this.question;
+  }
+
+  findUserById(id) {
+    return this.users.find((user) => user.fireStoreId === id);
+  }
+
+  setNewQuestion(question, answer, value) {
+    this.question = question;
+    this.answer = answer;
+    this.value = value;
+  }
 }
 
 module.exports = Trivia;

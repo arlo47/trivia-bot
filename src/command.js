@@ -1,4 +1,4 @@
-const { COMMANDS } = require('./constants/command');
+const { COMMANDS, COMMAND_CODE } = require('./constants/command');
 const { initializeTrivia } = require('./playTrivia');
 
 const processCommand = (msg) => {
